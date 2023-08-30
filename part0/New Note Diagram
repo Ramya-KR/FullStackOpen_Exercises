@@ -28,8 +28,8 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    server-->>browser: server asks browser to send GET request for rendering new note data
-    browser ->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    server-->>browser: server asks browser to send GET request for rendering new note data (redirection)
+    browser ->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json (also calls main.css and main.js)
     server-->>browser: [{"content": "HTML is easy", "date": "2023-1-1" }, ... ]
     deactivate server
 
