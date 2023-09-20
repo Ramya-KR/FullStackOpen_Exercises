@@ -11,12 +11,17 @@ const create = (newObject) => {
     return request.then(response => response.data)
 }
 
-const deleteEntry = (id,name) => {
-    if(window.confirm(`Delete ${name}?`)) {
-        axios.delete(`${baseUrl}/${id}`).then(response=>response.data)
+const deleteEntry = (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+        return axios.delete(`${baseUrl}/${id}`).catch((error) => console.log(error.response.data))
     }
 }
 
-const personService = { getAll, create, deleteEntry }
+const update = (id, newObject) => {
+    const request = axios.put(`${baseUrl}/${id}`, newObject)
+    return request.then(response => response.data)
+}
+
+const personService = { getAll, create, deleteEntry,update }
 
 export default personService
