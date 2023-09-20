@@ -58,7 +58,7 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm persons={persons} newName={newName} newNumber={newNumber} setNewName={setNewName} handleNumberChange={handleNumberChange} handleNameChange={handleNameChange} setPersons={setPersons} addPerson={addPerson} />
       <h2>Numbers</h2>
-      <Persons persons={persons} filter={filter} />
+      <Persons persons={persons} filter={filter} deleteEntry={personService.deleteEntry}/>
     </div>
   )
 }
