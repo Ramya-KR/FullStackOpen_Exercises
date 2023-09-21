@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "044-098654",
+      "number": "041-0987654",
       "id": 1
     },
     {
@@ -24,6 +24,16 @@
       "name": "Adam Hyes",
       "number": "09-6754321",
       "id": 5
+    },
+    {
+      "name": "Julian Hugh",
+      "number": "044-125647",
+      "id": 6
+    },
+    {
+      "name": "Carol Young",
+      "number": "12-09-7643421",
+      "id": 7
     }
   ]
 }
