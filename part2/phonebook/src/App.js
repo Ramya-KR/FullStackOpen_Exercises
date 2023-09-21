@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
   const [message, setMessage]=useState(null)
+  const [success, setSuccess] = useState(0)
 
   useEffect(() => {
     personService
@@ -45,6 +46,15 @@ const App = () => {
             setNewNumber('')
             setNewName('')
             setMessage(`${newName}'s number is updated`)
+            setSuccess(1)
+            setTimeout(() => {
+              setMessage(null)
+            }, 5000)
+          })
+          .catch(error => {
+            console.log(error)
+            setMessage(`${newName} is already deleted from the server`)
+            setSuccess(0)
             setTimeout(() => {
               setMessage(null)
             }, 5000)
@@ -66,6 +76,7 @@ const App = () => {
           setNewNumber('')
           setNewName('')
           setMessage(`Added ${newName}`)
+          setSuccess(1)
           setTimeout(() => {
             setMessage(null)
           }, 5000)
@@ -76,7 +87,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message}/>
+      <Notification message={message} success={success}/>
       <Filter handleFilter={handleFilter} />
       <h2>add a new</h2>
       <PersonForm persons={persons} newName={newName} newNumber={newNumber} setNewName={setNewName} handleNumberChange={handleNumberChange} handleNameChange={handleNameChange} setPersons={setPersons} addPerson={addPerson} />
