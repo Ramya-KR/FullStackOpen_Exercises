@@ -10,7 +10,7 @@ const CountryShown = ({ countries, country, filter, temp, setTemp }) => {
                 .then(res => setTemp(res))
         }
     }, [])
-    let url = temp && temp.weather && temp.weather[0] ? `https://openweathermap.org/img/wn/${temp.weather[0].icon}.png` : ''
+    let url = temp && temp.weather && temp.weather[0] ? `https://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png` : ''
     return (
         <div>
             {filter.length > 0 ? (
