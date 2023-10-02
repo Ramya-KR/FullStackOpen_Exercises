@@ -21,7 +21,7 @@ const CountryShown = ({ countries, country, filter, temp, setTemp }) => {
                         <div>area {countryToShow.area}</div>
                         <h4>languages:</h4>
                         <ul>{Object.values(countryToShow.languages).map((lang) => <li key={lang}>{lang}</li>)}</ul>
-                        <img src={countryToShow.flags.png} alt={countryToShow.flags.alt}></img>
+                        <img className="flag" src={countryToShow.flags.png} alt={countryToShow.flags.alt}></img>
                         <h3>Weather in {countryToShow.capital}</h3>
                         {temp && temp.main && temp.wind && temp.weather && temp.weather[0] ? <div>
                             <div>temperature {temp.main.temp} Celsius</div>
