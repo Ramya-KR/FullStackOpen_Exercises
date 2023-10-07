@@ -83,7 +83,8 @@ const App = () => {
           }, 5000)
         })
         .catch(error => {
-          setMessage(error.response.data.error)
+          console.log(error.message)
+          setMessage(error.message)
           setSuccess(0)
           setTimeout(() => {
             setMessage(null)
