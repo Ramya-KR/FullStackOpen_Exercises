@@ -83,7 +83,7 @@ const App = () => {
           }, 5000)
         })
         .catch(error => {
-          setMessage(`${newName} cannot be added as it doesn't meet the minimum length(3) criteria`)
+          setMessage(error.response.data.error)
           setSuccess(0)
           setTimeout(() => {
             setMessage(null)
