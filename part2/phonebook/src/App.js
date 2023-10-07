@@ -11,7 +11,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
-  const [message, setMessage]=useState(null)
+  const [message, setMessage] = useState(null)
   const [success, setSuccess] = useState(0)
 
   useEffect(() => {
@@ -52,6 +52,7 @@ const App = () => {
             }, 5000)
           })
           .catch(error => {
+            console.log(person)
             console.log(error)
             setMessage(`${newName} is already deleted from the server`)
             setSuccess(0)
@@ -81,13 +82,20 @@ const App = () => {
             setMessage(null)
           }, 5000)
         })
+        .catch(error => {
+          setMessage(`${newName} cannot be added as it doesn't meet the minimum length(3) criteria`)
+          setSuccess(0)
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
     }
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message} success={success}/>
+      <Notification message={message} success={success} />
       <Filter handleFilter={handleFilter} />
       <h2>add a new</h2>
       <PersonForm persons={persons} newName={newName} newNumber={newNumber} setNewName={setNewName} handleNumberChange={handleNumberChange} handleNameChange={handleNameChange} setPersons={setPersons} addPerson={addPerson} />
