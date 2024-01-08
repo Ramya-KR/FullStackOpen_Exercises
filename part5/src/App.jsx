@@ -122,11 +122,12 @@ const App = () => {
 
   return (
     <div>
+      {console.log(user)}
       <Notification message={message} success={success} />
       {user === null && <LoginForm username={username} password={password} handleUsernameChange={({ target }) => setUsername(target.value)} handlePasswordChange={({ target }) => setPassword(target.value)} handleLogin={handleLogin} />}
       {user !== null &&
         <div>
-          <div>{user.name} logged in <Logout handleLogout={handleLogout} /></div>
+          <p>{user.name} logged in <Logout id='logout' handleLogout={handleLogout} /></p>
           <Togglable showButtonLabel='add blog' hideButtonLabel='cancel' ref={addBlogRef}>
             <AddBlog createBlog={createBlog} />
           </Togglable>

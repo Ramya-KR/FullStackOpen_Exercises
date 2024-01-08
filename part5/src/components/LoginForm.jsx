@@ -8,12 +8,13 @@ const LoginForm = ({
   handleLogin
 }) => {
   return (
-    <div>
+    <div className='login'>
       <h1>Log in to application</h1>
       <form onSubmit={handleLogin}>
         <div>
-          username
+                    username
           <input
+            id='username'
             type="text"
             value={username}
             name="Username"
@@ -22,15 +23,16 @@ const LoginForm = ({
           />
         </div>
         <div>
-          password
+                    password
           <input
+            id='password'
             type="password"
             value={password}
             name="Password"
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">login</button>
+        <button id='submitButton' type="submit">login</button>
       </form>
     </div>
   )

@@ -13,22 +13,22 @@ const AddBlog = ({ createBlog }) => {
     event.target.reset()
   }
   return (
-    <div>
+    <div className='addBlog'>
       <h1>create new blog</h1>
       <form onSubmit={handleAdd}>
         <div>
                     title
-          <input type='text' name='title' placeholder='title' onChange={({ target }) => setNewBlog({ ...newBlog, title: target.value })} />
+          <input id='title' type='text' name='title' placeholder='title' onChange={({ target }) => setNewBlog({ ...newBlog, title: target.value })} />
         </div>
         <div>
                     author
-          <input type='text' name='author' placeholder='author' onChange={({ target }) => setNewBlog({ ...newBlog, author: target.value })} />
+          <input id='author' type='text' name='author' placeholder='author' onChange={({ target }) => setNewBlog({ ...newBlog, author: target.value })} />
         </div>
         <div>
                     url
-          <input type='text' name='url' placeholder='url' onChange={({ target }) => setNewBlog({ ...newBlog, url: target.value })} />
+          <input id='url' type='text' name='url' placeholder='url' onChange={({ target }) => setNewBlog({ ...newBlog, url: target.value })} />
         </div>
-        <button type='submit'>create</button>
+        <button id='create-button' type='submit'>create</button>
       </form>
     </div>
   )
