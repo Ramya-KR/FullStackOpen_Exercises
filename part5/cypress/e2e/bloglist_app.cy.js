@@ -43,6 +43,9 @@ describe('Blog app', function () {
       cy.visit('')
       cy.login({ username: 'robmar', password:'romart123' })
       cy.createBlog({ title: 'How to write a blog', author: 'Anil Agarwal', url: 'https://ww/jshdee.com' })
+      cy.createBlog({ title: 'How to write content', author: 'Anil Yadav', url: 'https://ww/jshdee.com' })
+      cy.createBlog({ title: 'How to learn JS', author: 'Prem', url: 'https://ww/jshdee.com' })
+      cy.createBlog({ title: 'How to create projects', author: 'Vikram', url: 'https://ww/jshdee.com' })
     })
     it('A blog can be created', function () {
       cy.contains('add blog').click()
@@ -77,6 +80,30 @@ describe('Blog app', function () {
       cy.get('#deleteButton').click()
       cy.contains('remove').should('exist')
     })
+
+    it('blogs are ordered by likes', function () {
+      cy.contains('How to write a blog').parent().as('blog1')
+      cy.contains('How to write content').parent().as('blog2')
+      cy.contains('How to learn JS').parent().as('blog3')
+      cy.get('@blog1').contains('show').click()
+      cy.get('@blog2').contains('show').click()
+      cy.get('@blog3').contains('show').click()
+      cy.get('@blog1').contains('like').click()
+      cy.wait(500)
+      cy.get('@blog2').contains('like').click()
+      cy.wait(500)
+      cy.get('@blog1').contains('like').click()
+      cy.wait(500)
+      cy.get('@blog2').contains('like').click()
+      cy.wait(500)
+      cy.get('@blog3').contains('like').click()
+      cy.wait(500)
+      cy.get('@blog1').contains('like').click()
+      cy.get('.blog').eq(0).contains('How to write a blog')
+      cy.get('.blog').eq(1).contains('How to write content')
+      cy.get('.blog').eq(2).contains('How to learn JS')
+      cy.get('.blog').eq(3).contains('How to create projects')
+    })
     describe('different user logged in', function () {
       beforeEach(function () {
         cy.login({ username: 'mluukkai', password: 'salainen' })
@@ -87,5 +114,6 @@ describe('Blog app', function () {
         cy.contains('remove').should('not.contain')
       })
     })
+
   })
 })
