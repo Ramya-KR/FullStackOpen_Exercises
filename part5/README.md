@@ -1,1 +1,2 @@
-Front end code that has the view of login and list of blogs
+This project contains about the Blog list app's frontend code where the user needs to log in first to view the list of blogs available and user will be able to add new blogs to the list and also like the blogs. Blogs are listed in the descending order of the likes i.e. highest liked blog will be shown first. User will also be able to delete the blog he added. It has been developed as part of the course Full stack open course by University of Helsinki.
+https://fullstackopen.com/en/about
