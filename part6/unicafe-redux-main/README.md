@@ -1,1 +1,0 @@
-Project contains about simple example of usage of React redux.
