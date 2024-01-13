@@ -4,7 +4,9 @@ const Notification = () => {
   const style = {
     border: 'solid',
     padding: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    color: 'green',
+    fontSize: 20
   }
   return (
     notification ? <div style={style}>{notification}</div> : null
