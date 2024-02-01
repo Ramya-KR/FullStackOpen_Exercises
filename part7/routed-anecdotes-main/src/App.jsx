@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Route, Routes, Link, useMatch, useNavigate } from 'react-router-dom'
+import { useField } from './hooks'
 
 const Menu = () => {
   const padding = {
@@ -26,7 +27,7 @@ const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
     <ul>
-      {anecdotes.map(anecdote => <li key={anecdote.id} ><Link to ={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link></li>)}
+      {anecdotes.map(anecdote => <li key={anecdote.id} ><Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link></li>)}
     </ul>
   </div>
 )
@@ -53,27 +54,34 @@ const Footer = () => (
   </div>
 )
 
-const Notification = ({notification}) => (
-  notification ? <div style={{border: 'solid pink', padding: '10px', display:'inline-block', marginTop:'10px'}}>
+const Notification = ({ notification }) => (
+  notification ? <div style={{ border: 'solid pink', padding: '10px', display: 'inline-block', marginTop: '10px' }}>
     {notification}
   </div> : null
 )
 
-const CreateNew = (props) => {
-  const [content, setContent] = useState('')
-  const [author, setAuthor] = useState('')
-  const [info, setInfo] = useState('')
+const CreateNew = ({ addNew }) => {
+  const content = useField('content')
+  const author = useField('author')
+  const info = useField('info')
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.addNew({
-      content,
-      author,
-      info,
+    addNew({
+      content: content.value,
+      author: author.value,
+      info: info.value,
       votes: 0
     })
     navigate('/')
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault()
+    content.reset(),
+    author.reset(),
+    info.reset()
   }
 
   return (
@@ -82,17 +90,20 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          <input name='content' {...content} />
         </div>
         <div>
           author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <input name='author' {...author} />
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e) => setInfo(e.target.value)} />
+          <input name='info' {...info} />
         </div>
-        <button>create</button>
+        <span>
+          <button>create</button>
+          <button onClick={handleReset}>reset</button>
+        </span>
       </form>
     </div>
   )
@@ -123,9 +134,9 @@ const App = () => {
     anecdote.id = Math.round(Math.random() * 10000)
     setAnecdotes(anecdotes.concat(anecdote))
     setNotification(`a new anecdote ${anecdote.content} is added!`)
-		setTimeout(() => {
-			setNotification("")
-		}, 5000)
+    setTimeout(() => {
+      setNotification("")
+    }, 5000)
   }
 
   const match = useMatch('/anecdotes/:id')
@@ -135,7 +146,7 @@ const App = () => {
     anecdotes.find(a => a.id === id)
   }
 
-  const anecdote = match ? anecdotes.find(anec => anec.id === Number(match.params.id)): null
+  const anecdote = match ? anecdotes.find(anec => anec.id === Number(match.params.id)) : null
 
   console.log(anecdote)
 
